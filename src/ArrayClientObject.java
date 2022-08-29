@@ -68,4 +68,27 @@ public class ArrayClientObject {
     public Client showElements(int index){
         return arrayClient[index]; 
     }
+    
+    
+    public void retiro(String cedula, double valor) {
+	for(Client cliente: arrayClient) {
+		if(cliente.getCedula().equalsIgnoreCase(cedula)) {
+			cliente.setSaldo(cliente.getSaldo() - valor);
+		    }
+	    }
+    }
+    
+    
+    public double consultarSaldo(String cedula) {
+	double saldo = 0;
+	
+	for(Client cliente: arrayClient) {
+		if(cliente.getCedula().equalsIgnoreCase(cedula)) {
+			saldo = cliente.getSaldo();
+		    }
+	    }
+	
+	    return saldo;
+    }
+    
 }
