@@ -37,7 +37,7 @@ public class ArrayClientObject {
         return thereIsOne;
     }
 
-    public void deleteClient(String cedula){
+    public boolean deleteClient(String cedula){
         //Luego de tener la posición del cliente a eliminar con ayuda del método
         //clientSearch(), se procede a eliminar el cliente sobrescribiendo ese cliente
         //con el cliente de la posición contigua.
@@ -46,8 +46,10 @@ public class ArrayClientObject {
             for(;index < cantReal-1; index++){
                 arrayClient[index] = arrayClient[index+1];
             }
+            --cantReal;
+            return true; 
         }
-        --cantReal;
+        return false; 
     }
     
     public int clientSearch(String cedula){
@@ -77,7 +79,7 @@ public class ArrayClientObject {
         return null; 
     }
 
-    public void makeDeposit(String cedula, double valor){
+    public boolean makeDeposit(String cedula, double valor){
         //Este método setea el atributo saldo sumandole el valor del parametro.
         //Se apoya del método auxiliar clientSearch() para buscar la posición del cliente.
         int position = clientSearch(cedula); //Esta variable guarda la posición del cliente cuya cédula coincide con la cedula del parametro
@@ -86,7 +88,9 @@ public class ArrayClientObject {
         if(position != -1){
             Client cliente = arrayClient[position];
             cliente.setSaldo(cliente.getSaldo() + valor);
+            return true; 
         }
+        return false; 
     }
     
     public void retiro(String cedula, double valor) {
