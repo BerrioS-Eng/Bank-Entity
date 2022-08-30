@@ -96,46 +96,44 @@ public class ArrayClientObject {
     public boolean retiro(String cedula, double valor) {
 	    int position = clientSearch(cedula);
 	    
-	    if(position != -1){
-            Client cliente = arrayClient[position];
+        Client cliente = arrayClient[position];
+	    if(position != -1 && cliente.getSaldo() >= valor){
             cliente.setSaldo(cliente.getSaldo() - valor);
             return true; 
         }
         return false; 
     }
-	    
-	
-    
     
     public double sumatoriaSaldosHombres() {
     double sumatoria = 0;
-    for (int i = 0; i < arrayClient.length; i++) {
+    for (int i = 0; i < cantReal; i++) {
         if (arrayClient[i].getSexo() == 'M' ) {
             sumatoria += arrayClient[i].getSaldo();
          }
      }
     return sumatoria;
- }
-    
- public double sumatoriaSaldosMujeres() {
-     double sumatoria = 0;
-     for (int i = 0; i < arrayClient.length; i++) {
-         if (arrayClient[i].getSexo() == 'F' ) {
-             sumatoria += arrayClient[i].getSaldo();
-         }
-     }
-     return sumatoria;
- }
-     
- public double consultarSaldo(String cedula, double saldo) {
-    for (int i = 0; i < arrayClient.length; i++) {
-         if (arrayClient[i].getCedula() == (cedula)) {
-            saldo = arrayClient.length;
-                 
-            }
     }
-    return saldo;
-}    					
+    
+    public double sumatoriaSaldosMujeres() {
+        double sumatoria = 0;
+        for (int i = 0; i < cantReal; i++) {
+            if (arrayClient[i].getSexo() == 'F' ) {
+                sumatoria += arrayClient[i].getSaldo();
+            }
+        }
+        return sumatoria;
+    }
+     
+    public Client consultarSaldo(String cedula) {
+        int position = clientSearch(cedula);
+	    //Si position es diferente de -1 quiere decir que existe un cliente
+        //con esa cédula y va a retornar el cliente para poder imprimir su nombre y su saldo 
+        if(position != -1){
+            Client cliente = arrayClient[position];
+            return cliente; 
+        }
+        return null;
+    }    					
     
     public Client showElement(int index){
         return arrayClient[index]; 

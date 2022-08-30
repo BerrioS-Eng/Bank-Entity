@@ -8,7 +8,7 @@ public class App {
         int n; 
         String cedula, nombre; 
         char sexo, opcion; 
-        double saldo, valor;
+        double saldo, valor, sumatoria;
         boolean flag; 
         Client cliente; 
 
@@ -93,11 +93,15 @@ public class App {
                         System.out.println("\t\t\tEl cliente no se encuentra en la base de datos");
                     }
                     break;
-                case '3':
-                    
+                case '3': //Sumatoria de saldos de las hombres
+                    sumatoria = arrayobj1.sumatoriaSaldosHombres(); 
+                    System.out.println("\t\t\tLa sumatoria de saldos de clientes hombres es " 
+                                        +  sumatoria);
                     break;
-                case '4': 
-                
+                case '4':  //Sumatoria de saldos de las mujeres
+                    sumatoria = arrayobj1.sumatoriaSaldosMujeres(); 
+                    System.out.println("\t\t\tLa sumatoria de saldos de clientes mujeres es " 
+                                        +  sumatoria);
                     break;
                 case '5': //Pide una cantidad y recorre el arreglo de objetos llamando al método clientList()
                     System.out.print("\t\tDigite una cantidad: ");
@@ -125,13 +129,36 @@ public class App {
                         System.out.println("\t\t\tTransacción fallida, no existe el cliente.");
                     }
                     break;
-                case '7':
-
+                case '7': //Pide los datos y llama al método retiro() para hacer un retiro
+                    System.out.print("\t\tCédula: ");
+                    cedula = scanner.nextLine();
+                    System.out.print("\t\tDigite una cantidad: ");
+                    valor = scanner.nextDouble();
+                    System.out.println("\t\tRealizando operación...");
+                    flag = arrayobj1.retiro(cedula, valor);
+                    if(flag){
+                        System.out.println("\t\t\tTransacción exitosa!!");
+                    } else {
+                        System.out.println("\t\t\tTransacción fallida");
+                        System.out.println("\t\t\tEl cliente no se encuentra en la base de datos ó" +
+                                            " el monto a retirar supera el saldo");
+                    }
                     break;
-                case '8':
-
+                case '8': //Consulta saldo del cliente según la cédula proporcionada
+                    System.out.println("\t\tDatos para consultar saldo:");
+                    System.out.print("\t\tCédula: ");
+                    cedula = scanner.nextLine();
+                    System.out.println("\t\tConsultando saldo...");
+                    cliente = arrayobj1.consultarSaldo(cedula);
+                    if(cliente != null){
+                        System.out.println("\t\t\tEstimad@ Sr@. " + cliente.getNombre() + 
+                                            ", su saldo actual es " + cliente.getSaldo());
+                    } else {
+                        System.out.println("\t\t\tEl cliente no se encuentra en la base de datos");
+                    }
                     break;
                 case '9':
+                System.out.println("\t\tFin de la aplicación!!");
                     break;
             }
 
