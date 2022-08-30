@@ -36,7 +36,7 @@ public class App {
         
         //Mostrando elementos del arreglo
         for(int i=0; i < arrayobj1.getCantReal(); i++){
-            System.out.print(arrayobj1.showElements(i).getNombre() + " | ");
+            System.out.print(arrayobj1.showElement(i).getNombre() + " | ");
         }
 
         //Probando método deleteClient()
@@ -45,7 +45,7 @@ public class App {
 
         //Mostrando elementos del arreglo
         for(int i=0; i < arrayobj1.getCantReal(); i++){
-            System.out.print(arrayobj1.showElements(i).getNombre() + " | ");
+            System.out.print(arrayobj1.showElement(i).getNombre() + " | ");
         }
 
         scanner.close();

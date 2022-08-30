@@ -65,10 +65,29 @@ public class ArrayClientObject {
         return index; 
     }
 
-    public Client showElements(int index){
-        return arrayClient[index]; 
+    public Client clientList(int index, double valor){
+        //Este método recibe entero(index) con el que accede a las posiciones
+        //del arreglo, para poder tomar el atributo saldo de cada elemento y 
+        //compararlo con el valor que llega como parametro.
+        //Retornará el cliente de esa posición(index) si cumple con la condición,
+        //en caso contrario, retornará null.
+        if(arrayClient[index].getSaldo() >= valor){
+            return arrayClient[index];
+        }
+        return null; 
     }
-    
+
+    public void makeDeposit(String cedula, double valor){
+        //Este método setea el atributo saldo sumandole el valor del parametro.
+        //Se apoya del método auxiliar clientSearch() para buscar la posición del cliente.
+        int position = clientSearch(cedula); //Esta variable guarda la posición del cliente cuya cédula coincide con la cedula del parametro
+        //Este condicional válida que la posición sea diferente de -1, para evitar que si el método 
+        //clientSearch() no encuentra nada, este no intente acceder al arreglo.
+        if(position != -1){
+            Client cliente = arrayClient[position];
+            cliente.setSaldo(cliente.getSaldo() + valor);
+        }
+    }
     
     public void retiro(String cedula, double valor) {
 	for(Client cliente: arrayClient) {
@@ -87,8 +106,10 @@ public class ArrayClientObject {
 			saldo = cliente.getSaldo();
 		    }
 	    }
-	
 	    return saldo;
     }
     
+    public Client showElement(int index){
+        return arrayClient[index]; 
+    }
 }
