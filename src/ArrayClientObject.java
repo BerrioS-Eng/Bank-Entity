@@ -107,7 +107,7 @@ public class ArrayClientObject {
     public double sumatoriaSaldosHombres() {
     double sumatoria = 0;
     for (int i = 0; i < cantReal; i++) {
-        if (arrayClient[i].getSexo() == 'M' ) {
+        if (arrayClient[i].getSexo() == 'm' ) {
             sumatoria += arrayClient[i].getSaldo();
          }
      }
@@ -117,7 +117,7 @@ public class ArrayClientObject {
     public double sumatoriaSaldosMujeres() {
         double sumatoria = 0;
         for (int i = 0; i < cantReal; i++) {
-            if (arrayClient[i].getSexo() == 'F' ) {
+            if (arrayClient[i].getSexo() == 'f' ) {
                 sumatoria += arrayClient[i].getSaldo();
             }
         }
