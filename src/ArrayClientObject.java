@@ -93,25 +93,49 @@ public class ArrayClientObject {
         return false; 
     }
     
-    public void retiro(String cedula, double valor) {
-	for(Client cliente: arrayClient) {
-		if(cliente.getCedula().equalsIgnoreCase(cedula)) {
-			cliente.setSaldo(cliente.getSaldo() - valor);
-		    }
-	    }
+    public boolean retiro(String cedula, double valor) {
+	    int position = clientSearch(cedula);
+	    
+	    if(position != -1){
+            Client cliente = arrayClient[position];
+            cliente.setSaldo(cliente.getSaldo() - valor);
+            return true; 
+        }
+        return false; 
     }
-    
-    
-    public double consultarSaldo(String cedula) {
-	double saldo = 0;
+	    
 	
-	for(Client cliente: arrayClient) {
-		if(cliente.getCedula().equalsIgnoreCase(cedula)) {
-			saldo = cliente.getSaldo();
-		    }
-	    }
-	    return saldo;
+    
+    
+    public double sumatoriaSaldosHombres() {
+    double sumatoria = 0;
+    for (int i = 0; i < arrayClient.length; i++) {
+        if (arrayClient[i].getSexo() == 'M' ) {
+            sumatoria += arrayClient[i].getSaldo();
+         }
+     }
+    return sumatoria;
+ }
+    
+ public double sumatoriaSaldosMujeres() {
+     double sumatoria = 0;
+     for (int i = 0; i < arrayClient.length; i++) {
+         if (arrayClient[i].getSexo() == 'F' ) {
+             sumatoria += arrayClient[i].getSaldo();
+         }
+     }
+     return sumatoria;
+ }
+     
+ public double consultarSaldo(String cedula, double saldo) {
+    for (int i = 0; i < arrayClient.length; i++) {
+         if (arrayClient[i].getCedula() == (cedula)) {
+            saldo = arrayClient.length;
+                 
+            }
     }
+    return saldo;
+}    					
     
     public Client showElement(int index){
         return arrayClient[index]; 
